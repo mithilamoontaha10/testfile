@@ -1,0 +1,155 @@
+{% extends 'dashboard.html' %} {% block mainbody %}
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
+  rel="stylesheet"
+/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<section class="section">
+  <style></style>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card rounded-3">
+        <div class="card-body p-4">
+          <div class="text-center mb-4">
+            <div class="message">
+              {% if message %}
+
+              <div class="messagebox">
+                <div
+                  class="alert alert-success alert-dismissible fade show"
+                  role="alert"
+                >
+                  <h2><strong>{{message.title}}</strong></h2>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                  ></button>
+
+                    <p>{{message.current_balance}}</p>
+
+                    <a href="{{url_for('views.dashboard')}}">Back to Home</a>
+
+
+                </div>
+              </div>
+
+              {% endif %}
+            </div>
+
+            <div class="nomessage">
+              {% if not message %}
+              <h3>Payment Partners</h3>
+              <h5>
+                Applied Discounts will be automatically added to account balance
+              </h5>
+              <img
+                class="img-fluid"
+                src="https://www.logo.wine/a/logo/BKash/BKash-Icon2-Logo.wine.svg"
+                style="width: 120px; height: 120px"
+              />
+              <img
+                class="img-fluid"
+                src="https://www.logo.wine/a/logo/Nagad/Nagad-Vertical-Logo.wine.svg"
+                style="width: 120px; height: 120px"
+              />
+            </div>
+            <form action="" method="POST">
+              <div class="d-flex flex-row align-items-center mb-4 pb-1">
+                <div class="flex-fill mx-3">
+                  <div
+                    class="form-outline"
+                    style="margin-top: 30px; padding: 8px"
+                  >
+                    <input
+                      type="text"
+                      id="formControlLgXc"
+                      class="form-control form-control-lg"
+                      value="{{current_user.mobile}}"
+                    />
+                    <label class="form-label" for="formControlLgXc"
+                      >Mobile Number</label
+                    >
+                  </div>
+                  <div
+                    name="code"
+                    class="form-outline"
+                    style="margin-top: 30px; padding: 6px"
+                  >
+                    <input
+                      name="code"
+                      type="text"
+                      id="formControlLgXc"
+                      class="form-control form-control-lg"
+                      value="Type Code Here"
+                    />
+                    <label class="form-label" for="formControlLgXc"
+                      >Discount Code
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                  <button type="submit" class="btn btn-success btn-lg">
+                    Redeem
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .card {
+    align: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px #ccc;
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+    $("#example").DataTable({
+      scrollY: "50vh",
+      scrollCollapse: true,
+    });
+  });
+</script>
+
+<script>
+  function generate_pdf() {
+    var element = document.getElementById("pdfthis");
+    html2pdf().from(element).save();
+  }
+</script>
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"
+/>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+  integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+{% endblock mainbody %}

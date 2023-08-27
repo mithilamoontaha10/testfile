@@ -1,0 +1,74 @@
+{% extends 'dashboard.html' %}
+
+{% block providerbody %}
+<section class="section">
+    <div class="card">
+        <h2>Add New Service</h2>
+        <form method="post" action="">
+            <div class="mb-3">
+                <label for="service_name" class="form-label">Service Name</label>
+                <input type="service_name" class="form-control" id="service_name" name="service_name" aria-describedby="service_name">
+                <div id="service_name" class="form-text">This title will be shown to users</div>
+            </div>
+            <div class="mb-3">
+                <label for="service_description" class="form-label">Service Description</label>
+                <input type="service_description" class="form-control" id="service_description" name="service_description" aria-describedby="service_description">
+            </div>
+            <div class="mb-3">
+                <label for="service_charge" class="form-label">Service Charge (Per item)</label>
+                <input type="service_charge" class="form-control" id="service_charge" name="service_charge" aria-describedby="service_charge">
+            </div>
+            <div class="mb-3">
+                <label for="service_location" class="form-label">Service Location</label>
+                <input type="service_location" class="form-control" id="service_location" name="service_location" aria-describedby="service_location">
+            </div>
+            <div class="mb-3">
+                <label for="gender" class="form-label">Gender</label>
+                <select class="form-control" id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Kids">Kids</option>
+                </select>
+            </div>
+        
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+    </div>
+</section>
+
+<style>
+    .card {
+        align: center;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1000px;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        box-shadow: 0 2px 3px #ccc;
+    }
+    .card h2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: underline;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            scrollY: '50vh',
+            scrollCollapse: true,
+        });
+    });
+</script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+{% endblock providerbody %}

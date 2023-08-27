@@ -1,0 +1,118 @@
+{% extends 'dashboard.html' %}
+
+{% block adminbody %}
+<section class="section">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title" align="center">Manage Coupons</h5> 
+          <table class="table" id="example" class="display" style="width:100%">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Code</th>
+                <th scope="col">Discount(BDT)</th>
+                <th scope="col">Usage</th>
+                <th scope="col">Eligible Users</th>
+                <th scope="col">Manage</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            {% for coupon in coupons %}
+              <tr>
+                <th scope="row">{{coupon.coupon_id}}</th>
+                <td>{{coupon.coupon_code}}</td>
+                <td>{{coupon.coupon_discount}}</td>
+                <td>{{coupon.coupon_usage}}</td>
+                <td>{{coupon.eligible_users}}</td>
+                <td>
+                    <button type="button" class="btn btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#addModal{{coupon.coupon_id}}" data-whatever="@mdo">Edit</button>
+                    
+                    <div class="modal fade  bd-example-modal-lg" id="addModal{{coupon.coupon_id}}" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="addModalLabel">Edit info for {{coupon.coupon_code}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST">
+                                    <div class="form-group">
+                                        <label for="coupon_id" class="col-form-label" name="coupon_id">{{coupon.coupon_id}}</label>
+                                        <input type="text" class="form-control" id="coupon_id" name="coupon_id" value="{{coupon.coupon_id}}" readonly>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="coupon_code" class="col-form-label">Code</label>
+                                        <input type="text" class="form-control" id="coupon_code" name="coupon_code" value="{{coupon.coupon_code}}">
+                                    </div>
+                                   
+                                    <div class="form-group">
+                                        <label for="coupon_discount" class="col-form-label">Code</label>
+                                        <input type="text" class="form-control" id="coupon_discount" name="coupon_discount" value="{{coupon.coupon_discount}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="coupon_usage" class="col-form-label">Usage</label>
+                                        <input type="text" class="form-control" id="coupon_usage" name="coupon_usage" value="{{coupon.coupon_usage}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="coupon_eligible_users" name="coupon_eligible_users" class="col-form-label"></label>
+                                        <select class="form-control" id="coupon_eligible_users" name="coupon_eligible_users">
+                                            <option value="premium">Premium</option>
+                                            <option value="regular">Regular</option>
+                                            <option value="all">All</option>
+                                        </select>
+                                    </div>
+                                   
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-outline-success" type="submit" class="btn btn-primary">Update Status</button>
+                                </div>
+                            </form>
+                            </div>
+                          </div>    
+                        </div>    
+                    </div>                  
+                </td>
+              </tr>
+            {% endfor %}  
+            
+            </tbody>
+          </table>
+          
+    </div>
+  </div>
+</div>
+</section>
+
+<style>
+.card {
+    align : center;
+    margin : 0 auto;
+    width : 100%;
+    max-width : 1000px;
+    padding : 20px;
+    border : 1px solid #eee;
+    border-radius : 5px;
+    box-shadow : 0 2px 3px #ccc;
+    }
+</style>
+
+<script>
+$(document).ready(function () {
+  $('#example').DataTable({
+      scrollY: '50vh',
+      scrollCollapse: true,
+  });
+});
+</script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+{% endblock adminbody %}

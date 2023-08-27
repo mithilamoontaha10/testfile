@@ -1,0 +1,114 @@
+{% extends 'dashboard.html' %}
+
+{% block adminbody %}
+<section class="section">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title" align="center">Edit User Information</h5> 
+          <table class="table" id="example" class="display" style="width:100%">
+            <thead>
+              <tr>
+                <th scope="col">NID</th>
+                <th scope="col">Email</th>
+                <th scope="col">Name</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Balance</th>
+                <th scope="col">Location</th>
+                <th scope="col">Manage</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            {% for user in regular_users %}
+              <tr>
+                <th scope="row">{{user.nid}}</th>
+                <td>{{user.email}}</td>
+                <td>{{user.first_name}}</td>
+                <td>{{user.mobile}}</td>
+                <td>{{user.balance}}</td>
+                <td>{{user.location}}</td>
+                <td>
+                    <button type="button" class="btn btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#addModal{{user.email}}" data-whatever="@mdo">Edit</button>
+                    
+                    <div class="modal fade  bd-example-modal-lg" id="addModal{{user.email}}" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="addModalLabel">Edit info for {{user.first_name}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST">
+                                    <div class="form-group">
+                                        <label for="user_email" class="col-form-label" name="user_email">{{user.first_name}}</label>
+                                        <input type="text" class="form-control" id="user_email" name="user_email" value="{{user.email}}" readonly>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="user_first_name" class="col-form-label">First Name</label>
+                                        <input type="text" class="form-control" id="user_first_name" name="user_first_name" value="{{user.first_name}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_mobile" class="col-form-label">Mobile</label>
+                                        <input type="text" class="form-control" id="user_mobile" name="user_mobile" value="{{user.mobile}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_location" class="col-form-label">Location</label>
+                                        <input type="text" class="form-control" id="user_location" name="user_location" value="{{user.location}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_balance" class="col-form-label">Balance</label>
+                                        <input type="text" class="form-control" id="user_balance" name="user_balance" value="{{user.balance}}">
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-outline-success" type="submit" class="btn btn-primary">Update Status</button>
+                                </div>
+                            </form>
+                            </div>
+                          </div>    
+                        </div>    
+                    </div>                  
+                </td>
+              </tr>
+            {% endfor %}  
+            
+            </tbody>
+          </table>
+          
+    </div>
+  </div>
+</div>
+</section>
+
+<style>
+.card {
+    align : center;
+    margin : 0 auto;
+    width : 100%;
+    max-width : 1000px;
+    padding : 20px;
+    border : 1px solid #eee;
+    border-radius : 5px;
+    box-shadow : 0 2px 3px #ccc;
+    }
+</style>
+
+<script>
+$(document).ready(function () {
+  $('#example').DataTable({
+      scrollY: '50vh',
+      scrollCollapse: true,
+  });
+});
+</script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+{% endblock adminbody %}

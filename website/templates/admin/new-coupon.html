@@ -1,0 +1,63 @@
+{% extends 'dashboard.html' %}
+
+{% block adminbody %}
+<section class="section">
+    <div class="card">
+        <form method="post" action="">
+            <div class="mb-3">
+                <label for="coupon_code" class="form-label">Coupon Code</label>
+                <input type="coupon_code" class="form-control" id="coupon_code" name="coupon_code" aria-describedby="coupon_code">
+                <div id="coupon_code" class="form-text">Redeemable Code</div>
+            </div>
+            <div class="mb-3">
+                <label for="coupon_discount" class="form-label">Discount</label>
+                <input type="coupon_discount" class="form-control" id="coupon_discount" name="coupon_discount" aria-describedby="coupon_discount">
+            </div>
+            <div class="mb-3">
+                <label for="coupon_usage_limit" class="form-label">Coupon Usage Limit</label>
+                <input type="coupon_usage_limit" class="form-control" id="coupon_usage_limit" name="coupon_usage_limit" aria-describedby="coupon_usage_limit">
+            </div>
+            <div class="mb-3">
+                <label for="coupon_eligible_users" class="form-label">Eligible Users</label>
+                <select class="form-control" id="coupon_eligible_users" name="coupon_eligible_users">
+                    <option value="premium">Premium</option>
+                    <option value="regular">Regular</option>
+                    <option value="all">All</option>
+                </select>
+            </div>
+        
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    </div>
+</section>
+
+<style>
+    .card {
+        align: center;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1000px;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        box-shadow: 0 2px 3px #ccc;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            scrollY: '50vh',
+            scrollCollapse: true,
+        });
+    });
+</script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+{% endblock adminbody %}
